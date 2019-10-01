@@ -9,3 +9,17 @@ All this course has been written using an DevOps environment with Vagrant.
 
 # Prerequsites
 Red Hat Certified System Administrator (RHCSA in Red Hat Enterprise Linux) certification or equivalent experience.
+
+# Ansible Version
+I have been using Ansible version *2.5* in this project. 
+
+```
+$ansible --version
+  ansible 2.5.1
+  config file = /home/user/.ansible.cfg
+  configured module search path = [u'/home/user/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/dist-packages/ansible
+  executable location = /usr/bin/ansible
+  python version = 2.7.15+ (default, Jul  9 2019, 16:51:35) [GCC 7.4.0]
+
+```
