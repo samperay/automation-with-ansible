@@ -1,8 +1,3 @@
-servera
-serverb
-serverc
-serverd
-
 [web]
 servera
 serverb
@@ -10,3 +5,7 @@ serverb
 [db]
 serverc
 serverd
+
+[all:children]
+web
+db
