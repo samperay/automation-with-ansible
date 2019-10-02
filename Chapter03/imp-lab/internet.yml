@@ -1,0 +1,91 @@
+---
+- name: Install package
+  hosts: serverb
+  become_method: sudo
+  remote_user: vagrant
+  become: yes
+
+  tasks:
+    - name: Install packages
+      yum:
+        name:
+          - firewalld
+          - httpd
+          - php
+          - php-mysql
+          - mariadb-server
+        state: latest
+
+    - name: start firewalld service
+      service:
+        name: firewalld 
+        state: started
+        enabled: true
+
+    - name: firewall allows http service
+      firewalld:
+        service: http
+        permanent: true
+        state: enabled
+        immediate: yes
+    
+    - name: enable http service started
+      service:
+        name: httpd
+        state: started
+        enabled: true
+
+    - name: start mariadb service started
+      service:
+        name: mariadb
+        state: started
+        enabled: true
+
+    - name: index.html pushed from localhost to managed host
+      copy:
+        src: "/var/www/html/index.html"
+        dest: /var/www/html/index.html
+
+- name: url status check
+  hosts: localhost
+  become: no
+
+  tasks:
+    - name: check url status
+      uri:
+        url: http://serverb
+        status_code: 200
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+          

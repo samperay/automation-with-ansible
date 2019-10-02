@@ -1,0 +1,14 @@
+create a playbook named internet.yml, which will contain two plays. The first play will require privilege escalation and must perform the following tasks in the specified order:
+
+1. Use the yum module to ensure the latest versions of the following packages are installed: 
+firewalld, httpd, php, php-mysql, and mariadb-server.
+2. Ensure the firewalld service is enabled and started.
+3. Ensure that firewalld is configured to allow connections to the ports used by the httpd service.
+4. Ensure that the httpd service is enabled and started.
+5. Ensure that the mariadb service is enabled and started.
+6. Use the get_url module to ensure that the content at the URL http://localost/index.html has been installed as
+the file /var/www/html/index.php on the managed host.
+
+
+The second play does not require privilege escalation and should run a single task using the uri module to confirm that the URL http://serverb returns an HTTP
+status code of 200
