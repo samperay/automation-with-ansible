@@ -23,3 +23,21 @@ $ansible --version
   python version = 2.7.15+ (default, Jul  9 2019, 16:51:35) [GCC 7.4.0]
 
 ```
+
+All the chapters have an *example* section which has been written with few playbooks related. 
+These are the basic instructions which are included for execution of playbooks.
+
+*Check Playbook syntax*
+```
+ansible-playbook --syntax-check <playbook.yml>
+```
+
+*Executing Playbook dry run*
+```
+ansible-playbook -C <playbook.yml>
+```
+
+*Executing playbook*
+```
+ansible-playbook <playbook.yml>
+```
