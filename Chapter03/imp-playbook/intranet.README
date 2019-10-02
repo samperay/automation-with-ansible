@@ -1,0 +1,9 @@
+create a playbook named intranet.yml which contains two plays. The first play requires privilege escalation and must perform the following tasks in the specified order:
+
+1. Use the yum module to ensure that the latest versions of the httpd and firewalld packages are installed.
+2. Ensure the firewalld service is enabled and started.
+3. Ensure that firewalld is configured to allow connections to the httpd service.
+4. Ensure that the httpd service is enabled and started.
+5. Ensure that the managed host's /var/www/html/index.html file consists of the content "Welcome to the example.com intranet!".
+
+The second play does not require privilege escalation and should run a single task using the uri module to confirm that the URL http://servera
