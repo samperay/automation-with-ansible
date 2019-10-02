@@ -1,0 +1,6 @@
+create a playbook named site.yml. This playbook contains one play, which should target members of the web host group. The playbook should use tasks to
+ensure that the following conditions are met on the managed hosts:
+
+1. The httpd package is present, using the yum module.
+2. The local files/index.html file is copied to /var/www/html/index.html on each managed host, using the copy module.
+3. The httpd service is started and enabled, using the service module.

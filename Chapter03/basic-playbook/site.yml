@@ -1,2 +1,22 @@
 ---
-- name: 
+- name: Install website
+  hosts: web
+  become: true
+  tasks:
+    
+    - name: install httpd on web hostgroup
+      yum:
+        name: httpd
+        state: present
+
+    - name: copy index.html to managed node
+      copy:
+        src: files/index.html
+        dest: /var/www/html/index.html
+
+    - name: start httpd service
+      service:
+        name: httpd
+        state: started
+        enabled: true
+
