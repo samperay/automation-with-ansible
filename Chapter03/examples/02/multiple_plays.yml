@@ -27,12 +27,12 @@
 
 
   tasks:
-  - name: install mariadb 
+  - name: install mariadb  - first task
     yum:
       name: mariadb-server
       state: present
 
-  - name: start mariadb service
+  - name: start mariadb service - second task
     service:
       name: mariadb
       state: started
