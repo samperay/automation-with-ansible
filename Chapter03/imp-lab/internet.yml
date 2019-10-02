@@ -42,9 +42,10 @@
         enabled: true
 
     - name: index.html pushed from localhost to managed host
-      copy:
-        src: "/var/www/html/index.html"
+      get_url:
+        url: "http://localhost/index.html"
         dest: /var/www/html/index.html
+        mode: 0400
 
 - name: url status check
   hosts: localhost
