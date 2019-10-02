@@ -1,0 +1,44 @@
+---
+# simple playbook with two plays
+
+- name: first play - create webserver
+  hosts: web
+  remote_user: vagrant
+  become_method: sudo
+  become: yes
+
+ 
+  tasks:
+    - name: create static website - first task
+      yum:
+        name: httpd
+        state: present
+
+    - name: start httpd service - second task
+      service:
+        name: httpd
+        state: started
+
+- name: install db - second play
+  hosts: db
+  remote_user: vagrant
+  become_method: sudo
+  become: yes
+
+
+  tasks:
+  - name: install mariadb 
+    yum:
+      name: mariadb-server
+      state: present
+
+  - name: start mariadb service
+    service:
+      name: mariadb
+      state: started
+      enabled: true
+
+
+      
+
+  
