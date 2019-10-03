@@ -1,9 +1,21 @@
 [web]
-servera
+servera  
 
 [db]
 serverb
 
+
 [all:children]
 web
 db
+
+###### Defining the usergroup for the hostgroup, the main disadvantage of this is, inventory file will be huge to work with it.
+# and so *host_vars* and *group_vars*
+
+#[web:vars]
+#user=was001
+
+#[db:vars]
+#user=db001
+
+
