@@ -1,0 +1,55 @@
+--- 
+- name: Managing Varaibles, installing apache webserver
+  hosts: web
+  vars:
+    web_pkg: httpd
+    firewall_pkg: firewalld
+    web_service: httpd
+    firewall_service: firewalld
+    python_pkg: python-httplib2
+    rule: http
+
+  become: yes
+
+  tasks:
+    - name: Installing apache webserver
+      yum:
+        name: 
+          - "{{ web_pkg }}"
+          - "{{ firewall_pkg }}"
+          - "{{ python_pkg }} "
+        state: latest
+
+    - name: start httpd service and enabled
+      service:
+        name: "{{ web_service }}"
+        state: started
+        enabled: true
+
+    - name: start firewalld service and enabled
+      service:
+        name: "{{ firewall_service }}"
+        state: started
+        enabled: true
+
+    - name: copy index.html to managed host
+      copy:
+        content: 'Welcome to Ansible Managed host'
+        dest: /var/www/html/index.html
+
+    - name: verify apache service"
+      firewalld:
+        service: "{{ rule }}"
+        permanent: true
+        immediate: true
+        state: enabled
+
+- name: check locally url status code
+  hosts: localhost
+  gather_facts: false
+  become: no
+  tasks:
+  - name: check for 200 return status
+    uri:
+      url: http://servera
+      status_code: 200
