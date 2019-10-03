@@ -1,0 +1,16 @@
+---
+# Register your output using vairables.
+
+- name: register using vairables
+  hosts: web
+  become: yes
+
+  tasks:
+    - name: install httpd
+      yum: 
+        name: "{{ package }}"
+        state: installed
+      register: op1
+
+    - debug:
+        var: op1

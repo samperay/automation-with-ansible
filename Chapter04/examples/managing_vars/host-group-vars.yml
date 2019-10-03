@@ -1,0 +1,15 @@
+---
+# Despite being created host and group vars in inventory, when the vars are defined in the play scope, it usually gets higher precidence
+# In, this example you are now created with user *newuser*
+
+# If you remove the *vars* section, you will be created with host inventory section where you have defined users.
+
+- name: host and group inventory vars
+  hosts: web
+  become: yes
+
+  tasks:
+    - name: create users
+      user:
+        name: "{{ user }}"
+        state: present
