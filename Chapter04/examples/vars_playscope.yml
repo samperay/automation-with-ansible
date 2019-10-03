@@ -1,0 +1,32 @@
+---
+- name: defining vars in play scope
+  hosts: web
+  vars: 
+    web_pkg: httpd
+  become: yes
+
+  tasks:
+    - name: install httpd using variable
+      yum:
+        name: "{{ web_pkg }}"
+        state: latest
+
+    - name: start service
+      service:
+        name: "{{ web_pkg }}"
+        state: started
+        enabled: true
+
+- name: Add users
+  hosts: web
+  vars:
+    users:
+      - user1
+      - user2
+  become: yes
+
+  tasks:
+    - name: create "{{ users }}"
+      user:
+        name: "{{ users }}"
+        state: present
