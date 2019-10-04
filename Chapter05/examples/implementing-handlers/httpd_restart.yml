@@ -1,0 +1,42 @@
+---
+# restart when only there is change in the httpd config
+- name: handlers
+  hosts: web
+  become: yes
+
+  tasks:
+    - name: install httpd
+      yum:
+        name: httpd
+        state: latest
+
+    - name: start service
+      service:
+        name: httpd
+        state: started
+      notify:
+            - restart_httpd
+    
+    - name: copy index.html
+      copy:
+        src: files/index.html
+        dest: /var/www/html/index.html
+    
+    - name: copy httpd config
+      copy:
+        src: files/httpd.conf
+        dest: /etc/httpd/conf/httpd.conf
+      notify:
+        - restart_httpd
+      # - restart_crond  # there can be multiple notify statements for the task
+    
+  handlers:
+    - name: restart_httpd
+      service:
+        name: httpd
+        state: restarted  
+    
+    - name: restart_crond
+      service:
+        name: crond
+        state: restarted
