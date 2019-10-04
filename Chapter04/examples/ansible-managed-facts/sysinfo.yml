@@ -1,0 +1,31 @@
+---
+# Gather required info of system using ansible_facts
+- name: syteminfo
+  hosts: servera
+  gather_facts: yes
+
+  tasks:
+    - name: create file
+      file:
+        path: /tmp/sysinfo.txt
+        mode: 0655
+        owner: vagrant
+        group: vagrant
+        state: touch
+
+    
+    - name: getall facts vars
+      debug:
+        var: ansible_facts
+
+    - name: write to sysinfo file
+      blockinfile:
+        path: /tmp/sysinfo.txt
+        block: |
+          *********************************************
+          HOSTNAME - {{ ansible_facts.hostname }}
+          FQDN - {{ ansible_facts.fqdn }}
+          IPv4 - {{ ansible_facts.default_ipv4.address }}
+          KERNEL - {{ ansible_facts.kernel }}
+          *********************************************
+           

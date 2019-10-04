@@ -1,0 +1,16 @@
+---
+# list all the ansible managed facts
+- name: gather facts
+  hosts: servera
+  tasks: 
+    - name: printing facts
+      debug:
+        var: ansible_facts
+
+    - name: print selected ansible_facts
+      debug:
+        msg: |
+          Hostname of {{ ansible_facts.fqdn }} having an default IPv4 address: {{ ansible_facts.default_ipv4.address }}
+          
+      
+
