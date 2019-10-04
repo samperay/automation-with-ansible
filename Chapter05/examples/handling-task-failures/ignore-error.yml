@@ -1,0 +1,10 @@
+---
+# end task if encountered with errors
+- name: stop task if any errors
+  hosts: web
+  tasks:
+    - name: install some task
+      yum:
+        name: httppd
+        state: latest
+      ignore_errors: true

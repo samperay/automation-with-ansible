@@ -1,0 +1,25 @@
+---
+# specify task failues based on 'when' conditions
+- name: task failures
+  hosts: web
+  ignore_errors: yes
+
+  tasks:
+    - name: install some package
+      yum:
+        name: googlepkg
+        state: latest
+      register: result
+
+    - debug:
+        var: result
+    
+    - name: success
+      debug:
+        msg: 'package is successfully installed'
+      when: result.failed == false
+    
+    - name: failed
+      debug:
+        msg: 'INFO: No such package found'
+      failed_when: result.failed == true

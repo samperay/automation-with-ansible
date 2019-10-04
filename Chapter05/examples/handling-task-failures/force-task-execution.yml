@@ -1,0 +1,23 @@
+---
+# end task if encountered with errors
+- name: stop task if any errors
+  hosts: web
+  force_handlers: yes
+  become: true
+  tasks:
+    - name: notify handler
+      command: /bin/true
+      notify: restart_httpd
+
+    - name: install some task
+      yum:
+        name: httppd
+        state: latest
+      
+  handlers:
+    - name: restart_httpd
+      service:
+        name: httpd
+        state: restarted
+
+    
