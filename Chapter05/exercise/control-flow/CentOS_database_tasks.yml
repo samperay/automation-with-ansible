@@ -1,0 +1,17 @@
+- name: set the 'db service'
+  set_fact: 
+    db_service: mariadb
+
+- name: packages for mariadb
+  yum:
+    name: 
+      - mariadb-server
+  
+- name: start mariadb server
+  service:
+    name: "{{ db_service }}"
+    state: enabled
+    enabled: true
+
+- name: create db users
+  include_tasks: database_user_tasks.yml

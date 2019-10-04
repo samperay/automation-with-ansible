@@ -1,0 +1,17 @@
+---
+# check for httpd service and restart if its running
+- name: restart httpd
+  hosts: web
+  become: yes
+
+  tasks:
+    - name: check for httpd service
+      command: /usr/bin/systemctl is-active httpd
+      ignore_errors: yes
+      register: result
+    
+    - name: restart httpd if start status
+      service:
+        name: httpd
+        state: restarted
+      when: result.rc == 0
