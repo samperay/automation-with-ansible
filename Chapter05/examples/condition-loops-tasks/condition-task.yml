@@ -1,0 +1,12 @@
+---
+# runs the task when the condition block is set true
+- name: condition task
+  hosts: web
+  vars:
+    counter: true
+  tasks:
+    - name: install httpd
+      yum:
+        name: httpd
+      when: counter
+  

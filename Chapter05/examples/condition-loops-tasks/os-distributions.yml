@@ -1,0 +1,20 @@
+---
+# check for OS distrubutions and install tasks based on that
+- name: install httpd
+  hosts: web
+  vars:
+    supported_distro:
+      - RedHat
+      - Fedora
+      - Ubuntu
+      - CentOS
+    pkg_redhat: httpd
+
+  tasks:
+    - name: Install "{{ pkg_redhat }}"
+      yum:
+        name: "{{ pkg_redhat }}"
+        state: latest
+      #when: ansible_distribution in supported_distro                              # first method of checking
+      when: ansible_distribution == "RedHat" or ansible_distribution == "CentOS"   # second method of checking
+      

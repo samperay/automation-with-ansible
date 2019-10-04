@@ -1,0 +1,12 @@
+---
+# tasks gets executed when variable is defined
+- name: defineded condition
+  hosts: web
+  vars:
+    pkg_http:
+  tasks:
+    - name: install httpd when condition is defined
+      yum:
+        name: "{{ pkg_http }}"
+        state: latest
+      when: pkg_http is defined
