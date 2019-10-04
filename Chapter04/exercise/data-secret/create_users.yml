@@ -1,0 +1,13 @@
+---
+- name: create users from encrypted file
+  hosts: servera
+  become: true
+  remote_user: vagrant
+  vars_files:
+    - secret.yml
+
+  tasks:
+  - name: create user
+    user:
+      name: "{{ username }}"
+      password: "{{ pwhash }}"
