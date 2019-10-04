@@ -1,0 +1,5 @@
+- create a fact file named /home/student/data-facts/ custom.fact. The fact file defines the package to install and the service to start on servera
+- Create the setup_facts.yml playbook to make the /etc/ansible/facts.d remote directory and to save the custom.fact file to that directory
+- setup_facts.yml playbook
+- create the main playbook that uses both default and user facts to configure servera
+- Create another task that uses the custom fact to start the httpd service.

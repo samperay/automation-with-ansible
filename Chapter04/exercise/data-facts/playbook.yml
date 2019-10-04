@@ -1,0 +1,16 @@
+---
+# create and install webserver pkg using custom facts
+- name: custom facts
+  hosts: servera
+  become: yes
+
+  tasks:
+  - name: Install webserver using custom fact file
+    yum:
+      name: "{{ ansible_facts.ansible_local.custom.general.package }}"
+      state: latest
+
+  - name: start service
+    service:
+      name: "{{ ansible_facts.ansible_local.custom.general.service }}" 
+      state: "{{ ansible_facts.ansible_local.custom.general.state }}"
