@@ -1,0 +1,12 @@
+---
+# crate loops to ensure your service is running fine
+- name: looping
+  hosts: web
+  tasks:
+    - name: check defined services are running
+      service:
+        name: "{{ item }}"
+        state: started
+      loop:
+        - httpd
+        - postfix
