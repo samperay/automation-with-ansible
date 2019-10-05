@@ -1,0 +1,26 @@
+---
+# Write the first task to contain a deliberate error that will cause it to fail.
+- name: task failues
+  hosts: db
+  vars:
+    - web_pkg: http
+    - db_pkg: mariadb-server
+    - db_service: mariadb
+  become: yes
+
+  tasks: 
+  - name: install httpd pkg
+    yum:
+      name: "{{ web_pkg }}"
+      state: latest
+    ignore_errors: yes
+
+  - name: install mariadb pkg
+    yum:
+      name: "{{ db_pkg }}"
+      state: latest
+ 
+    
+
+
+

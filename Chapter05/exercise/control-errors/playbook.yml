@@ -1,0 +1,44 @@
+---
+# Write the first task to contain a deliberate error that will cause it to fail.
+- name: task failues
+  hosts: db
+  vars:
+    - web_pkg: httpd
+    - db_pkg: mariadb-server
+    - db_service: mariadb
+  become: yes
+
+  tasks: 
+   # force task to change command
+  - name: check local time
+    command: date
+    register: command_result
+    changed_when: false
+
+  - name: print local time
+    debug:
+      var: command_result.stdout
+
+  - block:
+    - name: install http pkg
+      yum:
+        name: "{{ web_pkg }}"
+        state: latest
+      failed_when: web_pkg == 'httpd'
+
+    rescue:
+      - name: install mariadb pkg
+        yum:
+          name: "{{ db_pkg }}"
+          state: latest
+    
+    always:
+      - name: restart mariabdb service
+        service:
+            name: "{{ db_service }}"
+            state: started
+      
+    
+
+
+
