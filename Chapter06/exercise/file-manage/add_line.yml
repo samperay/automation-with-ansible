@@ -1,0 +1,10 @@
+---
+- name: inlinefile module
+  hosts: web
+  tasks:
+    - name: add user to file
+      lineinfile:
+        path: /home/vagrant/users.txt
+        line: 'Sunil'
+        state: present
+        

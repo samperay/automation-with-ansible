@@ -1,0 +1,10 @@
+---
+- name: remove file
+  hosts: web
+
+  tasks:
+  - name: remove userfile created
+    file:
+      path: /home/vagrant/users.txt
+      state: absent
+    

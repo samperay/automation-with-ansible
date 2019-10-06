@@ -1,0 +1,13 @@
+---
+- name: blockinfile
+  hosts: web
+
+  tasks:
+    - name: blockinfile
+      blockinfile:
+        path: /home/vagrant/users.txt
+        block: >
+          ' this is first line of the blockinfile ...
+            this is second line of blockinfile ..
+            and so on ..'
+        state: present

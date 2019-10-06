@@ -1,0 +1,13 @@
+---
+# copy users.txt to remote host in home directory
+- name: copy file
+  hosts: web
+  tasks:
+    - name: copy users.txt to remote node
+      copy:
+        src: files/users.txt
+        dest: /home/vagrant/users.txt
+        owner: vagrant
+        group: vagrant
+        mode: u+rw,g-wx,o-rwx
+        setype: samba_share_t

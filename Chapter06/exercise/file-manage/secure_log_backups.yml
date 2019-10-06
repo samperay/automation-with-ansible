@@ -1,0 +1,12 @@
+---
+# copy /var/log/secure backups
+- name: fetch module to retrive log
+  hosts: web
+  become: yes
+  
+  tasks:
+  - name: retrive /var/log/secure
+    fetch:
+      src: /var/log/secure
+      dest: secure-backups 
+      flat: no
