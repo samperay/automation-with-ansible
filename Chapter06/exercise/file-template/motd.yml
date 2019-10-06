@@ -1,0 +1,15 @@
+---
+# create motd
+- name: MOTD using templates
+  hosts: web
+  become: yes
+
+  tasks:
+  - name: create motd
+    template:
+      src: templates/motd.j2
+      dest: /etc/motd
+      owner: root
+      group: root
+      mode: 0644
+      
