@@ -1,0 +1,12 @@
+[web]
+servera
+
+[db]
+serverb
+
+[all]
+servera
+serverb
+
+servera
+serverb

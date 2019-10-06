@@ -1,0 +1,17 @@
+---
+- name: selecting host inventory
+  hosts: all, !db
+  # ser*
+  # server?
+  # servera, serverb
+  # [ servera, serverb, web, !db ]
+  # servera, !serverb
+  # db, !web
+  # 192.168.1.*
+  become: yes
+
+  tasks:
+  - name: install httpd
+    yum:
+      name: httpd
+      state: latest
