@@ -1,0 +1,13 @@
+--- 
+# check stat for /etc/passwd
+- name: stat for /etc/passwd
+  hosts: servera
+
+  tasks:
+    - name: /etc/passwd stat module
+      stat:
+        path: /etc/passwd
+      register: result
+    
+    - debug:
+        var: result

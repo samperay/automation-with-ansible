@@ -1,0 +1,16 @@
+---
+# check if file exists
+- name: file exists
+  hosts: web
+
+  tasks:
+  - name: create simple file
+    file:
+      path: /tmp/testfile
+      owner: vagrant
+      group: vagrant
+      mode: 0600
+      state: touch
+
+
+    

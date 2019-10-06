@@ -1,0 +1,35 @@
+---
+# copy file to remote node
+- name: copy module
+  hosts: web
+  tasks:
+    - name: copy file
+      copy:
+        src: /tmp/copyfile.txt
+        dest: /tmp
+
+    - name: add line
+      lineinfile:
+          path: /tmp/copyfile.txt
+          line: 'this is second line - lineinfile module'
+          state: present
+
+    - name: add blockline
+      blockinfile:
+        path: /tmp/copyfile.txt
+        block: >
+          'this is from blockinfile - 1st line
+           this would be second line and 
+           so this is third line'
+        state: present
+
+    - name: stat module
+      stat:
+        path: /tmp/copyfile.txt
+        checksum_algorithm: md5
+      register: result
+
+    - debug:
+        msg: result of checksum of file "{{result.stat.checksum}}"
+
+
