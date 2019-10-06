@@ -1,0 +1,9 @@
+---
+# using templates creating facts
+- name: templates
+  hosts: web
+  tasks:
+  - name: template render
+    template:
+      src: jinja-template.j2
+      dest: /tmp/template-file

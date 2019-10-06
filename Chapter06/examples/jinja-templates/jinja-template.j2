@@ -1,0 +1,6 @@
+[ {{ ansible_managed }} ]
+
+Hostname: {{ ansible_facts.hostname }}
+Arch: {{ ansible_architecture }}
+IP: {{ ansible_default_ipv4.address }}
+Distrubution: {{ ansible_distribution }}
