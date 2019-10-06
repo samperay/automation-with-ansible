@@ -1,0 +1,10 @@
+---
+- name: install httpd ( import task)
+  hosts: web
+  become: yes
+
+  tasks:
+  - name: install httpd
+    yum:
+      name: httpd
+      state: latest

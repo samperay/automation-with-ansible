@@ -1,0 +1,9 @@
+
+# import playbooks
+
+- name: install httpd package
+  import_playbook: install-httpd.yml
+
+- name: restart httpd service
+  import_playbook: service-httpd-restart.yml
+
