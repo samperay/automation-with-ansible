@@ -1,0 +1,17 @@
+---
+- name: vhost role playbook
+  hosts: servera
+  become: yes
+  pre_tasks:
+    - name: pre-task
+      debug:
+        msg: 'Pre-task: webserver configurations'
+  
+  roles: 
+    - myvhost
+  
+  post_tasks:
+    - name: post-task
+      debug:
+        msg: 'Post-task: webserver configured'
+    

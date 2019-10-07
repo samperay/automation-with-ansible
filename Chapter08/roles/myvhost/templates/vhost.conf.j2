@@ -1,0 +1,12 @@
+<VirtualHost *:80>
+ServerAdmin webmaster@servera 
+ServerName {{ ansible_facts.hostname }} 
+ErrorLog logs/servera-error.log
+CustomLog logs/servera-common.log common
+DocumentRoot /var/www/vhosts/{{ ansible_facts.hostname }}
+<Directory /var/www/vhosts/{{ ansible_facts.hostname }}/>
+Options +Indexes +FollowSymlinks +Includes
+Order allow,deny
+Allow from all
+</Directory>
+</VirtualHost>
