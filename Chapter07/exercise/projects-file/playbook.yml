@@ -1,0 +1,31 @@
+---
+- name: configure webserver
+  hosts: servera
+  become: yes
+
+  tasks:
+  - name: import env task file and vars
+    include_tasks: tasks/environment.yml
+    vars:
+      package: httpd
+      service: httpd
+    
+  - name: firewall tasks
+    include_tasks: tasks/firewall.yml
+    vars:
+      firewall_pkg: firewalld
+      firewall_svc: firewalld
+      rule: http
+
+  - name: copy file
+    include_tasks: tasks/placeholder.yml
+    vars:
+      file: /var/www/html/index.html
+  
+- name: Import test play file and set the variable
+  import_playbook: plays/test.yml
+  vars:
+    url: 'http://servera'
+  
+
+  
