@@ -1,0 +1,9 @@
+---
+- name: role for motd
+  hosts: servera
+  become: yes
+  vars:
+    system_owner: admin
+  roles:
+  - role: motd
+    system_owner: rolesvar
