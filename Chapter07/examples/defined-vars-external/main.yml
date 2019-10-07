@@ -1,0 +1,9 @@
+---
+- name: import variables
+  hosts: web
+  tasks:
+    - name: import vars
+      import_tasks: define-vars.yml
+      vars:
+        package: httpd
+        service: httpd
