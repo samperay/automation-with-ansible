@@ -14,3 +14,35 @@ Order of high precedence for variables:
 - vars
 - defaults
 - vars defined in playscope
+
+# ansible-galaxy
+
+Public library of Ansible content written by a variety of Ansible administrators and users.
+
+**ansible-cli**
+```
+ansible-galaxy search 'redis' --platforms EL
+ansible-galaxy info ansible-sudo
+ansible-galaxy install ansible-sudo -p roles/
+ansible-galaxy list
+ansible-galaxy remove ansible-sudo
+```
+You can install from the specific version using the requirements file
+
+*roles/requirements.yml*
+```
+# Install latest from ansible-galaxy
+- src: geerlingguy.redis
+
+# Install roles using from any GIT based repository using SSH
+- src: git@github.com:weareinteractive/ansible-sudo.git
+  scm: git
+  version: master
+  name: ansible-sudo
+```
+Then, 
+```
+ansible-galaxy install -r roles/requirements.yml -p roles
+```
+
+
