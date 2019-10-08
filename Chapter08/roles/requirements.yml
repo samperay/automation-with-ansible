@@ -1,0 +1,8 @@
+# Install latest from ansible-galaxy
+- src: geerlingguy.redis
+
+# Install roles using from any GIT based repository using SSH
+- src: git@github.com:weareinteractive/ansible-sudo.git
+  scm: git
+  version: master
+  name: ansible-sudo
