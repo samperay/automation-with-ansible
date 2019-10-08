@@ -1,0 +1,18 @@
+---
+- name: fail module
+  hosts: servera
+  become_method: sudo
+
+  tasks:
+    - name: check if /var/run/app.lock exists
+      stat:
+        path: /var/run/app.lock
+      register: lock
+
+    - debug:
+        var: lock
+
+    - name: fail if app is running
+      assert:
+        that:
+          - not lock.stat.exists
