@@ -1,6 +1,6 @@
 ---
 - name: vhost role playbook
-  hosts: servera
+  hosts: web
   become: yes
   pre_tasks:
     - name: pre-task
