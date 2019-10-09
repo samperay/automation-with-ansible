@@ -1,0 +1,24 @@
+---
+- name: repo config
+  hosts: servera
+  vars:
+    custom_pkg: example-motd
+  become: yes
+
+  tasks:
+    - name: gather facts
+      package_facts: 
+        manager: auto
+    
+    - name: show package facts for custom package
+      debug: 
+        var: ansible_facts.packages[custom_pkg]
+      when: custom_pkg in ansible_facts.packages
+
+    - name: Ensure Example Repo exists
+      yum_repository:
+        name: example-internal
+        description: Example Inc. Internal YUM repo
+        file: example
+        baseurl: http://materials.example.com/yum/repository/
+        gpgcheck: yes
