@@ -1,0 +1,21 @@
+---
+- name: set timezone to Asia/Calcutta IST
+  hosts: servera
+  become: yes
+
+  tasks:
+  - name: set timezone
+    command: unlink /etc/localtime
+    ignore_errors: yes
+    register: result
+  
+  - debug:
+      var: result
+  
+
+  - name: set timezone to IST
+    file:
+      src: /usr/share/zoneinfo/Asia/Calcutta
+      dest: /etc/localtime
+      state: link
+    when: result.rc == 0

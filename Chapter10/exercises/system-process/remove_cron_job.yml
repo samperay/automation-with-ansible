@@ -1,0 +1,11 @@
+---
+- name: remove cronjob
+  hosts: web
+  become: true
+  
+  tasks:
+  - name: remove cronjob
+    cron:
+      name: add date and time to a file
+      cron_file: add-date-time
+      state: absent

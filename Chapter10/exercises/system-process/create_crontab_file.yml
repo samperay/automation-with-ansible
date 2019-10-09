@@ -1,0 +1,19 @@
+---
+- name: cronjob
+  hosts: web
+  become: true
+  
+  tasks:
+  - name: add cronjob
+    cron:
+      name: add date and time to a file
+      minute: "*/2"
+      hour: 9-16
+      day: 1-5
+      user: vagrant
+      job: date >>/home/vagrant/my_date_time_cron_job
+      cron_file: add-date-time
+      state: present
+
+    
+
